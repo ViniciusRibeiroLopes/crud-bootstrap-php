@@ -74,10 +74,8 @@
                             <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/add.php"><i class="fa-regular fa-square-plus"></i> Novo Usuário</a></li>
                         </ul>
                     </li>
-                    <?php if (isset($_SESSION['user'])): // Verifica se está logado 
-                    ?>
-                        <?php if ($_SESSION['user'] == "admin"): // Verifica se está logado como admin 
-                        ?>
+                    <?php if (isset($_SESSION['user'])): // Verifica se está logado ?>
+                        <?php if ($_SESSION['user'] == "admin"): // Verifica se está logado como admin ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-user-lock"></i> Usuários

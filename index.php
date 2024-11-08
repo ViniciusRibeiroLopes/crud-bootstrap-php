@@ -71,40 +71,6 @@
 
 		<hr>
 
-		<div class="row justify-content-center" data-aos="fade-up" id="actions">
-			<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
-				<a href="<?php echo BASEURL; ?>?produtos/add.php" class="btn btn-secondary w-100 square-button">
-					<i class="fa-solid fa-box fa-4x"></i>
-					<p class="mt-2">Novo Produto</p>
-				</a>
-			</div>
-
-			<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
-				<a href="<?php echo BASEURL; ?>?produtos" class="btn btn-light w-100 square-button">
-					<i class="fa-solid fa-boxes-stacked fa-4x"></i>
-					<p class="mt-2">Produtos</p>
-				</a>
-			</div>
-		</div>
-
-		<hr>
-		
-		<div class="row justify-content-center" data-aos="fade-up" id="actions">
-			<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
-				<a href="<?php echo BASEURL; ?>?usuarios/add.php" class="btn btn-secondary w-100 square-button">
-					<i class="fa-solid fa-user-gear fa-4x"></i>
-					<p class="mt-2">Novo Usuário</p>
-				</a>
-			</div>
-
-			<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
-				<a href="usuarios" class="btn btn-light w-100 square-button">
-					<i class="fa-solid fa-users-gear fa-4x"></i>
-					<p class="mt-2">Usuários</p>
-				</a>
-			</div>
-		</div>
-
 		<?php if (isset($_SESSION['user'])): ?>
 			<?php if ($_SESSION['user'] == 'admin'): ?>
 				<div class="row justify-content-center mb-3">
