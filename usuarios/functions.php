@@ -100,21 +100,28 @@ function add()
     if (!empty($_POST['usuario'])) {
         try {
             $usuario = $_POST['usuario'];
-            
-            if (!empty($_FILES["foto"]["name"])) {
-                // Upload da foto
-                $pasta_destino = "fotos/"; //pasta onde ficam as fotos
-                $arquivo_destino = $pasta_destino . basename($_FILES["foto"]["name"]); //Caminho completo até o arquivo que será gravado
-                $nomearquivo = basename($_FILES["foto"]["name"]); // nome do arquivo
-                $resolucao_arquivo = getimagesize($_FILES["foto"] ["tmp_name"]);
-                $tamanho_arquivo = $_FILES["foto"]["size"]; //tamanho do arquivo em bytes
-                $nome_temp = $_FILES["foto"]["tmp_name"]; //nome e caminho do arquivo no servidor
-                $tipo_arquivo = strtolower(pathinfo($arquivo_destino, PATHINFO_EXTENSION)); //extensão do arquivo
 
-                // Chamada da função upload para gravar a imagem
-                upload($pasta_destino, $arquivo_destino, $tipo_arquivo, $nome_temp, $tamanho_arquivo);
+            // Caminho absoluto para o diretório 'imagens'
+            $uploadDir = dirname(__DIR__) . '/fotos/'; // Corrige o caminho adicionando a barra '/'
 
-                $usuario['foto'] = $nomearquivo;
+            // Verifica se o diretório existe, se não existir, cria-o
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true); // Cria o diretório com permissões de leitura e escrita
+            }
+
+            // Processamento da imagem
+            if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+                $imageName = basename($_FILES['foto']['name']);
+                $imagePath = $uploadDir . $imageName;
+
+                // Move a imagem para o diretório 'imagens'
+                if (move_uploaded_file($_FILES['foto']['tmp_name'], $imagePath)) {
+                    $usuario['foto'] = $imageName; // Armazena o caminho relativo no banco de dados
+                } else {
+                    $_SESSION['message'] = "Erro ao carregar a imagem.";
+                    $_SESSION['type'] = 'danger';
+                    return;
+                }
             }
 
             //criptografando a senha
@@ -123,10 +130,9 @@ function add()
                 $usuario['password'] = $senha;
             }
 
-            $usuario['foto'] = $nomearquivo;
-
             save('usuarios', $usuario);
             header('Location: index.php');
+            exit(); // Adiciona exit() para garantir que o script pare após o redirecionamento
         } catch (Exception $e) {
             $_SESSION['message'] = "Aconteceu um erro: " . $e->getMessage();
             $_SESSION['type'] = "danger";
@@ -144,6 +150,8 @@ function edit()
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
+            $usuarioV = find('funcionarios', $id);
+
             if (isset($_POST['usuario'])) {
                 $usuario = $_POST['usuario'];
 
@@ -153,19 +161,27 @@ function edit()
                     $usuario['password'] = $senha;
                 }
 
-                if (!empty($_FILES["foto"]["name"])) {
-                    // Upload da foto
-                    $pasta_destino = "fotos/"; //pasta onde ficam as fotos
-                    $arquivo_destino = $pasta_destino . basename($_FILES["foto"]["name"]); //Caminho completo até o arquivo que será gravado
-                    $nomearquivo = basename($_FILES["foto"]["name"]); // nome do arquivo
-                    $resolucao_arquivo = getimagesize($_FILES["foto"] ["tmp_name"]);
-                    $tamanho_arquivo = $_FILES["foto"]["size"]; //tamanho do arquivo em bytes
-                    $nome_temp = $_FILES["foto"]["tmp_name"]; //nome e caminho do arquivo no servidor
-                    $tipo_arquivo = strtolower(pathinfo($arquivo_destino, PATHINFO_EXTENSION)); //extensão do arquivo
+                // Processa a imagem enviada
+                if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+                    $uploadDir = dirname(__DIR__) . '/fotos/';
+                    $imageName = basename($_FILES['foto']['name']);
+                    $imagePath = $uploadDir . $imageName;
 
-                    upload($pasta_destino, $arquivo_destino, $tipo_arquivo, $nome_temp, $tamanho_arquivo);
-
-                    $usuario['foto'] = $nomearquivo;
+                    // Move a nova imagem para o diretório
+                    if (move_uploaded_file($_FILES['foto']['tmp_name'], $imagePath)) {
+                        // Apaga a imagem antiga, se existir
+                        if (!empty($usuarioV['foto'])) {
+                            unlink($uploadDir . $usuarioV['foto']);
+                        }
+                        $usuario['foto'] = $imageName; // Atualiza a nova imagem
+                    } else {
+                        $_SESSION['message'] = "Erro ao atualizar a imagem.";
+                        $_SESSION['type'] = 'danger';
+                        return;
+                    }
+                } else {
+                    // Mantém a imagem existente se nenhuma nova for enviada
+                    $usuario['foto'] = $usuarioV['foto'];
                 }
 
                 update('usuarios', $id, $usuario);
@@ -202,5 +218,3 @@ function delete($id = null)
 
     header('Location: index.php');
 }
-
-?>

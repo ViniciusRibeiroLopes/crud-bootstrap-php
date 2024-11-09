@@ -1,9 +1,8 @@
 <?php
 require_once('functions.php');
 edit();
+include(HEADER_TEMPLATE); 
 ?>
-
-<?php include(HEADER_TEMPLATE); ?>
 
 <br>
 <h2>Atualizar Funcionário</h2>

@@ -55,13 +55,13 @@ include(HEADER_TEMPLATE);
                         <td><?php echo $usuario['user']; ?></td>
                         <td>
                             <?php
-                            if (empty($funcionario['foto'])) {
+                            if (empty($usuario['foto'])) {
                                 $imagem = 'SemImagem.png';
                             } else {
-                                $imagem = $funcionario['foto'];
+                                $imagem = $usuario['foto'];
                             }
                             ?>
-                            <img src="../fotos/<?php echo $imagem; ?>" alt="Foto do funcionário" class="img-fluid" style="width: 180px; height: auto;">
+                            <img src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid" style="width: 180px; height: auto;">
                         </td>
                         <td class="actions text-right">
                             <div class="d-flex flex-column flex-md-row justify-content-end gap-2">

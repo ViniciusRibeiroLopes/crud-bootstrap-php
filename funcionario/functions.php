@@ -52,7 +52,7 @@ function add()
       if (move_uploaded_file($_FILES['foto']['tmp_name'], $imagePath)) {
         $funcionario['foto'] = $imageName; // Armazena o caminho relativo no banco de dados
       } else {
-        $_SESSION['message'] = "Erro ao funcionarioregar a imagem.";
+        $_SESSION['message'] = "Erro ao carregar a imagem.";
         $_SESSION['type'] = 'danger';
         return;
       }

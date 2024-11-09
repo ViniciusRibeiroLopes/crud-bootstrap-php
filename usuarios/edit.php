@@ -1,5 +1,5 @@
 <?php
-//esse é o edit.php
+// Esse é o edit.php
 include('functions.php');
 edit();
 
@@ -34,15 +34,15 @@ include(HEADER_TEMPLATE);
     <div class="form-group col-md-7">
         <label for="name">Imagem</label>
         <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)">
+
         <?php
-        if (empty($usuario['foto'])) {
-            $imagem = 'SemImagem.png';
-        } else {
-            $imagem = $usuario['foto'];
-        }
+        // Verifica se a imagem foi definida, caso contrário, usa uma imagem padrão
+        $imagem = !empty($usuario['foto']) ? $usuario['foto'] : 'SemImagem.png';
         ?>
+
         <br>
-        <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do funcionário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
+        <!-- Exibe a imagem atual ou a imagem padrão -->
+        <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
     </div>
 
     <div id="actions" class="row">
@@ -56,16 +56,18 @@ include(HEADER_TEMPLATE);
 <?php include(FOOTER_TEMPLATE); ?>
 
 <script>
-    $(document).ready(() => {
-        $("#foto").change(function() {
-            const file = this.files[0];
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    $("#imgPreview").attr("src", event.target.result);
-                };
-                reader.readAsDataURL(file);
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Atualiza a imagem para o preview
             }
-        });
-    });
+
+            reader.readAsDataURL(input.files[0]); // Lê o arquivo como uma URL de dados
+        }
+    }
 </script>
