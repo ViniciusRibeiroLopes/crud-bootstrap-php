@@ -1,9 +1,8 @@
 <?php
-require("functions.php");
+include("functions.php");
 index();
+include(HEADER_TEMPLATE);
 ?>
-
-<?php include(HEADER_TEMPLATE); ?>
 
 <header style="margin-top:10px">
     <div class="row">

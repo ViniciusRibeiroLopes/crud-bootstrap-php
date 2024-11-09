@@ -1,6 +1,7 @@
 <?php
 //esse é o view.php
-require_once('functions.php');
+include('functions.php');
+
 if (!isset($_SESSION)) session_start();
 if (isset($_SESSION['user'])) { // Verifica se tem um usuário logado
     if ($_SESSION['user'] != 'admin') { // Verifica se o usuário é admin
