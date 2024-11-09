@@ -1,9 +1,8 @@
 <?php
-    // Esse é o login.php
-    include('../config.php');
-    include(HEADER_TEMPLATE);
+// Esse é o login.php
+include('../config.php');
+include(HEADER_TEMPLATE);
 ?>
-
 <div id="actions" class="mt-5 mb-5">
     <form action="valida.php" method="post">
         <div class="row">

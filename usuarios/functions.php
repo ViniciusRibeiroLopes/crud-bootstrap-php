@@ -20,24 +20,6 @@ function index()
 }
 
 /**
- *  Criptografia
- */
-function criptografia($senha)
-{
-    //==> Criptografia Blowfish
-    //http://www.linhadecodigo.com.br/artigo/3332/criptografando-senhas-usando-bcrypt-blowfish-no-php.aspx
-
-    // Aplicando criptografia na senha
-    $custo = "08";
-    $salt = "CflfllePArKlBJomMOF6aJ";
-
-    // Gera um hash baseado em bcrypt
-    $hash = crypt($senha, "$2a$" . $custo . "$" . $salt . "$");
-
-    return $hash; // retorna a senha criptografada
-}
-
-/**
  *  Upload de imagens
  */
 function upload($pasta_destino, $arquivo_destino, $tipo_arquivo, $nome_temp, $tamanho_arquivo)

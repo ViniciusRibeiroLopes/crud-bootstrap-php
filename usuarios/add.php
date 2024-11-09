@@ -1,12 +1,11 @@
 <?php
-require_once('functions.php');
+include('functions.php');
 add();
+include(HEADER_TEMPLATE);
 ?>
 
-<?php include(HEADER_TEMPLATE); ?>
-
 <br>
-<h2>Novo Funcionário</h2>
+<h2>Novo Usuário</h2>
 
 <form action="add.php" method="post" enctype="multipart/form-data">
     <!-- área de campos do formulário -->
@@ -18,15 +17,15 @@ add();
         </div>
 
         <div class="form-group col-md-2">
-            <label for="campo3">Usuário (Login)</label>
+            <label for="username">Usuário (Login)</label>
             <input type="text" class="form-control" name="usuario['user']" required>
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-md-5">
-            <label for="campo1">Senha</label>
-            <input type="text" class="form-control" name="usuario['password']"  required>
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" name="usuario['password']" required>
         </div>
 
         <div class="form-group col-md-2">
@@ -42,7 +41,7 @@ add();
             }
             ?>
             <br>
-            <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do funcionário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
+            <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
         </div>
     </div>
 

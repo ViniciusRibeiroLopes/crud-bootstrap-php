@@ -1,9 +1,9 @@
 <?php
-    //esse é o edit.php
-    include('functions.php');
-    edit();
+//esse é o edit.php
+include('functions.php');
+edit();
 
-    include(HEADER_TEMPLATE);
+include(HEADER_TEMPLATE);
 ?>
 
 <header>
@@ -31,24 +31,18 @@
         </div>
     </div>
 
-    <div class="row">
-        <?php 
-        $foto = "";
+    <div class="form-group col-md-7">
+        <label for="name">Imagem</label>
+        <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)">
+        <?php
         if (empty($usuario['foto'])) {
-            if ($usuario['foto'] == "semimagem.jpg") {
-                $foto = "semimagem.jpg";
-            } else {
-                $foto = $usuario['foto'];
-            }
+            $imagem = 'SemImagem.png';
+        } else {
+            $imagem = $usuario['foto'];
         }
         ?>
-        <div class="form-group col-md-4">
-            <label for="foto">Foto</label>
-            <input type="file" class="form-control" id="foto" name="foto" value="fotos/<?php echo $foto ?>">
-        </div>
-        <div class="form-group col-md-2">
-            <img class="form-control shadow p-2 mb-2 bg-body rounded" id="imgPreview" src="fotos/<?php echo $foto ?>" alt="Foto do usuário">
-        </div>
+        <br>
+        <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do funcionário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
     </div>
 
     <div id="actions" class="row">
@@ -63,11 +57,11 @@
 
 <script>
     $(document).ready(() => {
-        $("#foto").change(function () {
+        $("#foto").change(function() {
             const file = this.files[0];
             if (file) {
                 let reader = new FileReader();
-                reader.onload = function (event) {
+                reader.onload = function(event) {
                     $("#imgPreview").attr("src", event.target.result);
                 };
                 reader.readAsDataURL(file);
