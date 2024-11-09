@@ -34,7 +34,7 @@
     <div class="row">
         <?php 
         $foto = "";
-        if (!empty($usuario['foto'])) {
+        if (empty($usuario['foto'])) {
             if ($usuario['foto'] == "semimagem.jpg") {
                 $foto = "semimagem.jpg";
             } else {
@@ -44,7 +44,7 @@
         ?>
         <div class="form-group col-md-4">
             <label for="foto">Foto</label>
-            <input type="file" class="form-control" id="foto" name="foto" value="<?php echo $foto ?>">
+            <input type="file" class="form-control" id="foto" name="foto" value="fotos/<?php echo $foto ?>">
         </div>
         <div class="form-group col-md-2">
             <img class="form-control shadow p-2 mb-2 bg-body rounded" id="imgPreview" src="fotos/<?php echo $foto ?>" alt="Foto do usuário">

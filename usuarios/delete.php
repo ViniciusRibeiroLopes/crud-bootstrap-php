@@ -15,12 +15,4 @@
             $_SESSION['type'] = "danger";
         }
     } 
-    /*
-    else {
-        // Como era o arquivo original
-        delete($_GET['id']);
-    } else {
-        die("ERRO: ID não definido.");
-    }
-    */
 ?>

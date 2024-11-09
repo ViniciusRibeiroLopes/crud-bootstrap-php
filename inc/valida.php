@@ -5,7 +5,7 @@ require_once(DBAPI);
 include(HEADER_TEMPLATE);
 
 // Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
-if (!empty($_POST) and (empty($_POST['login']) or empty($_POST['senha']))) {
+if (!empty($_POST) and (empty($_POST['login']) OR empty($_POST['senha']))) {
     header('Location: ' . BASEURL . 'index.php');
     exit;
 }
@@ -15,7 +15,7 @@ $bd = open_database();
 try {
     // Selecionando o Banco de dados que está ajustado na constante DB_NAME
     // Caso ele não consiga.
-    $db->select_db(DB_NAME);
+    $bd->select_db(DB_NAME);
     // Pegando o login e senha digitado no form
     $usuario = $_POST['login'];
     $senha = $_POST['senha'];
@@ -32,6 +32,9 @@ try {
         if ($query->num_rows > 0) {
             // Pegamos os dados
             $dados = $query->fetch_assoc();
+            echo "<b>";
+            var_dump($dados);
+            echo "</b>";
             $id = $dados['id'];
             $nome = $dados['nome'];
             $user = $dados['user'];
@@ -40,8 +43,7 @@ try {
 
             // Verifica se user não está vazio
             if (!empty($user)) {
-                if (!isset($_SESSION))
-                    session_start();
+                if (!isset($_SESSION)) session_start();
                 $_SESSION['message'] = "Seja bem vindo " . $nome . "!";
                 $_SESSION['type'] = "info";
                 $_SESSION['id'] = $id;

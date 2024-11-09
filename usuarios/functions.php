@@ -60,6 +60,7 @@ function upload($pasta_destino, $arquivo_destino, $tipo_arquivo, $nome_temp, $ta
                 $_SESSION['type'] = "info";
                 $uploadOk = 1;
             } else {
+                $uploadOk = 0;
                 throw new Exception("O arquivo não é uma imagem!");
             }
         }
@@ -96,7 +97,7 @@ function upload($pasta_destino, $arquivo_destino, $tipo_arquivo, $nome_temp, $ta
             // Se tudo estiver OK, tentamos fazer o upload do arquivo
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $arquivo_destino)) {
                 //colocando o nome do arquivo da foto do usuário no vetor
-                $_SESSION['message'] = "O arquivo " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " foi armazenado.";
+                $_SESSION['message'] = "O arquivo " . htmlspecialchars(basename($nomearquivo)) . " foi armazenado.";
                 $_SESSION['type'] = "success";
                 //echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])) . " has been uploaded.";
             } else {
@@ -115,15 +116,15 @@ function upload($pasta_destino, $arquivo_destino, $tipo_arquivo, $nome_temp, $ta
 function add()
 {
     if (!empty($_POST['usuario'])) {
-        $usuario = $_POST['usuario'];
-
         try {
+            $usuario = $_POST['usuario'];
+            
             if (!empty($_FILES["foto"]["name"])) {
                 // Upload da foto
                 $pasta_destino = "fotos/"; //pasta onde ficam as fotos
                 $arquivo_destino = $pasta_destino . basename($_FILES["foto"]["name"]); //Caminho completo até o arquivo que será gravado
                 $nomearquivo = basename($_FILES["foto"]["name"]); // nome do arquivo
-                $check = getimagesize($_FILES["foto"]["tmp_name"]);
+                $resolucao_arquivo = getimagesize($_FILES["foto"] ["tmp_name"]);
                 $tamanho_arquivo = $_FILES["foto"]["size"]; //tamanho do arquivo em bytes
                 $nome_temp = $_FILES["foto"]["tmp_name"]; //nome e caminho do arquivo no servidor
                 $tipo_arquivo = strtolower(pathinfo($arquivo_destino, PATHINFO_EXTENSION)); //extensão do arquivo
@@ -135,10 +136,12 @@ function add()
             }
 
             //criptografando a senha
-            if (!empty($_POST['password'])) {
+            if (!empty($usuario['password'])) {
                 $senha = criptografia($usuario['password']);
                 $usuario['password'] = $senha;
             }
+
+            $usuario['foto'] = $nomearquivo;
 
             save('usuarios', $usuario);
             header('Location: index.php');
@@ -173,7 +176,7 @@ function edit()
                     $pasta_destino = "fotos/"; //pasta onde ficam as fotos
                     $arquivo_destino = $pasta_destino . basename($_FILES["foto"]["name"]); //Caminho completo até o arquivo que será gravado
                     $nomearquivo = basename($_FILES["foto"]["name"]); // nome do arquivo
-                    $check = getimagesize($_FILES["foto"]["tmp_name"]);
+                    $resolucao_arquivo = getimagesize($_FILES["foto"] ["tmp_name"]);
                     $tamanho_arquivo = $_FILES["foto"]["size"]; //tamanho do arquivo em bytes
                     $nome_temp = $_FILES["foto"]["tmp_name"]; //nome e caminho do arquivo no servidor
                     $tipo_arquivo = strtolower(pathinfo($arquivo_destino, PATHINFO_EXTENSION)); //extensão do arquivo
@@ -213,7 +216,7 @@ function view($id = null)
 function delete($id = null)
 {
     global $usuarios;
-    $usuarios = remove('usuarios', $id);
+    $usuarios = remove("usuarios", $id);
 
     header('Location: index.php');
 }
