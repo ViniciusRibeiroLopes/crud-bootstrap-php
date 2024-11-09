@@ -19,7 +19,7 @@ add();
 
         <div class="form-group col-md-2">
             <label for="campo3">Usuário (Login)</label>
-            <input type="text" class="form-control" name="usuario['user']" disabled>
+            <input type="text" class="form-control" name="usuario['user']" required>
         </div>
     </div>
 
