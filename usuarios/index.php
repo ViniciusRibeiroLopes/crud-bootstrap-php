@@ -55,12 +55,13 @@ include(HEADER_TEMPLATE);
                         <td><?php echo $usuario['user']; ?></td>
                         <td>
                             <?php
-                            if (!empty($usuario['foto'])) {
-                                echo "<img src=\"fotos/" . $usuario['foto'] . "\" class=\"shadow p-1 mb-1 bg-body rounded\" width=\"100px\">";
+                            if (empty($funcionario['foto'])) {
+                                $imagem = 'SemImagem.png';
                             } else {
-                                echo "<img src=\"fotos/semimagem.jpg\" class=\"shadow p-1 mb-1 bg-body rounded\" width=\"100px\">";
+                                $imagem = $funcionario['foto'];
                             }
                             ?>
+                            <img src="../fotos/<?php echo $imagem; ?>" alt="Foto do funcionário" class="img-fluid" style="width: 180px; height: auto;">
                         </td>
                         <td class="actions text-right">
                             <div class="d-flex flex-column flex-md-row justify-content-end gap-2">
