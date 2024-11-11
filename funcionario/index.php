@@ -19,7 +19,6 @@ include(HEADER_TEMPLATE);
 		</div>
 	</div>
 </header>
-</header>
 
 
 <?php if (!empty($_SESSION['message'])): ?>
