@@ -4,7 +4,7 @@ include('functions.php');
 edit();
 
 if (!isset($_SESSION))
-session_start();
+    session_start();
 
 include(HEADER_TEMPLATE);
 // Verifica se o usuário não está logado ou não é admin
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user'])) {
     <div class="row">
         <div class="form-group col-md-4">
             <label for="campo3">Senha</label>
-            <input type="password" class="form-control" name="usuario[password]" value="<?php echo $usuario['password']; ?>">
+            <input type="password" class="form-control" name="usuario[password]" value="" placeholder="Deixe em branco para manter a senha atual">
         </div>
     </div>
 
@@ -69,7 +69,7 @@ if (!isset($_SESSION['user'])) {
 
         <br>
         <!-- Exibe a imagem atual ou a imagem padrão -->
-        <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
+        <img id=" imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
     </div>
 
     <br>

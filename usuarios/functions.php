@@ -145,20 +145,23 @@ function add()
  */
 function edit()
 {
-    //$now = new DateTime("now");
     try {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
+            // Busca o usuário pelo ID
             $usuarioV = find('usuarios', $id);
 
+            // Verifica se o formulário foi submetido
             if (isset($_POST['usuario'])) {
                 $usuario = $_POST['usuario'];
 
-                //criptografando a senha
-                if (!empty($_POST['password'])) {
-                    $senha = criptografia($usuario['password']);
+
+                if (!empty($_POST['usuario']['password'])) {
+                    $senha = criptografia($_POST['usuario']['password']);
                     $usuario['password'] = $senha;
+                } else {
+                    $usuario['password'] = $usuarioV['password'];
                 }
 
                 // Processa a imagem enviada
@@ -184,11 +187,12 @@ function edit()
                     $usuario['foto'] = $usuarioV['foto'];
                 }
 
+                // Atualiza o usuário no banco de dados
                 update('usuarios', $id, $usuario);
                 header('Location: index.php');
             } else {
                 global $usuario;
-                $usuario = find("usuarios", $id);
+                $usuario = $usuarioV; // Carrega o usuário sem tentar descriptografar a senha
             }
         } else {
             header('Location: index.php');
