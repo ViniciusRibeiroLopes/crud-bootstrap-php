@@ -71,8 +71,8 @@
                                     <i class="fa-solid fa-user-lock"></i> Usuários
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                                    <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/add.php"><i class="fa-solid fa-user-tie"></i> Adicionar Usuário</a></li>
-                                    <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/"><i class="fa-solid fa-user-lock"></i> Gerenciar Usuários</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/add.php"><i class="fa-solid fa-user-lock"></i> Adicionar Usuário</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/"><i class="fa-solid fa-users-gear"></i> Gerenciar Usuários</a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>

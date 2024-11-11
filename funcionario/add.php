@@ -1,8 +1,8 @@
 <?php
-require_once('functions.php');
+include('functions.php');
 add();
 if (!isset($_SESSION))
-    session_start();
+session_start();
 include(HEADER_TEMPLATE);
 
 // Verifica se o usuário não está logado ou não é admin
@@ -104,3 +104,5 @@ if (!isset($_SESSION['user'])) {
         }
     }
 </script>
+
+<?php include(FOOTER_TEMPLATE); ?>

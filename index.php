@@ -76,14 +76,14 @@
 				<div class="row justify-content-center mb-3">
 					<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
 						<a href="usuarios/add.php" class="btn btn-secondary w-100 square-button">
-							<i class="fa-solid fa-user-tie fa-4x"></i>
+							<i class="fa-solid fa-user-lock fa-4x"></i>
 							<p class="mt-2">Novo Usuário</p>
 						</a>
 					</div>
 
 					<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
 						<a href="<?php echo BASEURL; ?>usuarios" class="btn btn-light w-100 square-button">
-							<i class="fa-solid fa-user-lock fa-4x"></i>
+							<i class="fa-solid fa-users-gear fa-4x"></i>
 							<p class="mt-2">Usuários</p>
 						</a>
 					</div>
