@@ -2,8 +2,32 @@
 include("functions.php");
 index();
 if (!isset($_SESSION))
-session_start();
+    session_start();
 include(HEADER_TEMPLATE);
+// Verifica se o usuário não está logado ou não é admin
+if (!isset($_SESSION['user'])) {
+    // Mensagem de erro caso o usuário não esteja logado ou não seja admin
+    $_SESSION['message'] = "Você precisa estar logado para acessar esse recurso!";
+    $_SESSION['type'] = "danger";
+
+    echo "<br>";
+?>
+
+    <!-- Exibe a mensagem de erro e a opção de voltar -->
+    <div class="alert alert-danger alert-dismissible" role="alert" id="actions">
+        <?php echo $_SESSION['message']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="container text-center">
+        <a href="javascript:history.back()" class="btn btn-light"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
+    </div>
+
+<?php
+    clear_messages();
+    include(FOOTER_TEMPLATE);
+    exit; // Impede a execução de qualquer código abaixo
+}
 ?>
 
 <header style="margin-top:10px">

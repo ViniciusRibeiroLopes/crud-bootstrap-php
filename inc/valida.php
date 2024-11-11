@@ -25,7 +25,7 @@ try {
         $senha = criptografia($_POST['senha']);
 
         // Validar o usuário/senha digitados
-        $sql = "SELECT id, nome, user, password FROM usuarios WHERE (user = '" . $usuario . "') AND (password = '" . $senha . "') LIMIT 1;";
+        $sql = "SELECT id, nome, user, password, foto FROM usuarios WHERE (user = '" . $usuario . "') AND (password = '" . $senha . "') LIMIT 1;";
         $query = $bd->query($sql);
         // Verificamos se retornou algo
         if ($query->num_rows > 0) {
@@ -37,6 +37,7 @@ try {
             $nome = $dados['nome'];
             $user = $dados['user'];
             $password = $dados['password'];
+            $foto = $dados['foto'];
 
             // Verifica se user não está vazio
             if (!empty($user)) {
@@ -45,6 +46,7 @@ try {
                 $_SESSION['type'] = "info";
                 $_SESSION['id'] = $id;
                 $_SESSION['user'] = $user;
+                $_SESSION['foto'] = $foto;
                 echo "<b>";
 
                 echo "<b/>";

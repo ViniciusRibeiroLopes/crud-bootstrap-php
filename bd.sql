@@ -47,14 +47,6 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `customers`
---
-
-INSERT INTO `customers` (`id`, `name`, `cpf_cnpj`, `birthdate`, `address`, `hood`, `zip_code`, `city`, `state`, `phone`, `mobile`, `ie`, `created`, `modified`) VALUES
-(1, 'Fulano de Tal', '123.456.789-00', '1989-01-01 00:00:00', 'Rua da Web, 123', 'Internet', '12345678', 'Teste', 'Te', '15 12345678', '15987654321', '123456', '2016-05-24 00:00:00', '2016-05-24 00:00:00'),
-(2, 'Ciclano de Tal', '123.456.789-00', '1989-01-01 00:00:00', 'Rua da Web, 123', 'Internet', '12345678', 'Teste', 'Te', '15 12345678', '15987654321', '123456', '2016-05-24 00:00:00', '2016-05-24 00:00:00');
-
---
 -- Índices para tabela `customers`
 --
 ALTER TABLE `customers`
@@ -87,11 +79,6 @@ CREATE TABLE usuarios(
     password varchar(100) not null,
     foto varchar(50)
 );
-
-INSERT INTO `usuarios`(`nome`, `user`, `password`) 
-VALUES ('Zé Lele','zelele','5243897562837456982'),
-('Mary Zica','mazi','786098767869'),
-('Fugiru Nakombi','fugina','623485634753234');
 
 COMMIT;
 

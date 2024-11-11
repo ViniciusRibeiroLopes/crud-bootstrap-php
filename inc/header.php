@@ -64,23 +64,29 @@
                             <li><a class="dropdown-item" href="<?php echo BASEURL; ?>funcionario/add.php"><i class="fa-regular fa-square-plus"></i> Novo Funcionário</a></li>
                         </ul>
                     </li>
-                    <?php if (isset($_SESSION['user'])): // Verifica se está logado ?>
-                        <?php if ($_SESSION['user'] == "admin"): // Verifica se está logado como admin ?>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <?php if ($_SESSION['user'] == "admin"): ?>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-user-lock"></i> Usuários
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                                     <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/add.php"><i class="fa-solid fa-user-tie"></i> Adicionar Usuário</a></li>
                                     <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/"><i class="fa-solid fa-user-lock"></i> Gerenciar Usuários</a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASEURL; ?>inc/logout.php">
-                                <?php echo $_SESSION['user'] ?>! <i class="fa-solid fa-person-walking-arrow-right"></i> Desconectar
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="<?php echo BASEURL . 'fotos/' . $_SESSION['foto']; ?>" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 8px;">
+                                <?php echo $_SESSION['user']; ?>
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="<?php echo BASEURL; ?>inc/logout.php"><i class="fa-solid fa-sign-out-alt"></i> Desconectar</a></li>
+                            </ul>
                         </li>
+
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASEURL; ?>inc/login.php">
@@ -91,6 +97,6 @@
                 </ul>
             </div>
         </div>
-    </nav> 
+    </nav>
     <!-- End Header/Navigation -->
     <main class="container align-items-center justify-content-center custom-padding">
