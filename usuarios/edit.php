@@ -60,7 +60,7 @@ if (!isset($_SESSION['user'])) {
 
     <div class="form-group col-md-7">
         <label for="name">Imagem</label>
-        <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)">
+        <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)" value="<?php echo $usuario['foto']; ?>>
 
         <?php
         // Verifica se a imagem foi definida, caso contrário, usa uma imagem padrão
@@ -72,6 +72,7 @@ if (!isset($_SESSION['user'])) {
         <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
     </div>
 
+    <br>
     <div id="actions" class="row">
         <div class="col-md-12">
             <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-sd-card"></i> Salvar</button>

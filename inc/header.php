@@ -79,14 +79,19 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="<?php echo BASEURL . 'fotos/' . $_SESSION['foto']; ?>" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 8px;">
+                                <?php if ($_SESSION['foto'] != "") : ?>
+                                    <img src="<?php echo BASEURL . 'fotos/' . $_SESSION['foto']; ?>" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 8px;">
+                                <?php else : ?>
+                                    <div class="d-flex flex-column justify-content-center align-items-center" style="margin-right: 8px;">
+                                        <i class="fa-solid fa-circle-user fa-2x"></i>
+                                    </div>
+                                <?php endif; ?>
                                 <?php echo $_SESSION['user']; ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="<?php echo BASEURL; ?>inc/logout.php"><i class="fa-solid fa-sign-out-alt"></i> Desconectar</a></li>
                             </ul>
                         </li>
-
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASEURL; ?>inc/login.php">

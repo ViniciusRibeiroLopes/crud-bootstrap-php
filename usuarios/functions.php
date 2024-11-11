@@ -150,7 +150,7 @@ function edit()
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
-            $usuarioV = find('funcionarios', $id);
+            $usuarioV = find('usuarios', $id);
 
             if (isset($_POST['usuario'])) {
                 $usuario = $_POST['usuario'];
