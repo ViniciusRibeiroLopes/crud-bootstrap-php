@@ -64,16 +64,6 @@
                             <li><a class="dropdown-item" href="<?php echo BASEURL; ?>funcionario/add.php"><i class="fa-regular fa-square-plus"></i> Novo Funcionário</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="fa fa-user-tie"></i>
-                            Usuários
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios"><i class="fa-brands fa-black-tie"></i> Gerenciar Usuários</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASEURL; ?>usuarios/add.php"><i class="fa-regular fa-square-plus"></i> Novo Usuário</a></li>
-                        </ul>
-                    </li>
                     <?php if (isset($_SESSION['user'])): // Verifica se está logado ?>
                         <?php if ($_SESSION['user'] == "admin"): // Verifica se está logado como admin ?>
                             <li class="nav-item dropdown">
@@ -88,7 +78,7 @@
                         <?php endif; ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASEURL; ?>inc/logout.php">
-                                Bem vindo <?php echo $_SESSION['user'] ?>! <i class="fa-solid fa-person-walking-arrow-right"></i> Desconectar
+                                <?php echo $_SESSION['user'] ?>! <i class="fa-solid fa-person-walking-arrow-right"></i> Desconectar
                             </a>
                         </li>
                     <?php else: ?>
@@ -101,7 +91,6 @@
                 </ul>
             </div>
         </div>
-
     </nav> 
     <!-- End Header/Navigation -->
     <main class="container align-items-center justify-content-center custom-padding">

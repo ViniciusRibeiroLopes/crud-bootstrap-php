@@ -2,6 +2,8 @@
 
 include('functions.php');
 view($_GET['id']);
+if (!isset($_SESSION))
+session_start();
 include(HEADER_TEMPLATE);
 
 ?>

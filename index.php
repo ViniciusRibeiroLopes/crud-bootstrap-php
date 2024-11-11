@@ -82,7 +82,7 @@
 					</div>
 
 					<div class="col-lg-2 col-sm-4 col-md-3 mb-3">
-						<a href="<?php echo BASEURL; ?>?users" class="btn btn-light w-100 square-button">
+						<a href="<?php echo BASEURL; ?>usuarios" class="btn btn-light w-100 square-button">
 							<i class="fa-solid fa-user-lock fa-4x"></i>
 							<p class="mt-2">Usuários</p>
 						</a>

@@ -1,6 +1,8 @@
 <?php
 include("functions.php");
 index();
+if (!isset($_SESSION))
+session_start();
 include(HEADER_TEMPLATE);
 ?>
 

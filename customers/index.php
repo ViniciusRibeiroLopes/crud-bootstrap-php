@@ -1,6 +1,8 @@
 <?php
 include("functions.php");
 index();
+if (!isset($_SESSION))
+	session_start();
 include(HEADER_TEMPLATE);
 ?>
 
@@ -24,6 +26,7 @@ include(HEADER_TEMPLATE);
 		<?php echo $_SESSION['message']; ?>
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
+	<?php clear_messages(); ?>
 <?php endif; ?>
 
 <hr>

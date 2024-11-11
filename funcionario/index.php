@@ -1,6 +1,8 @@
 <?php
 include("functions.php");
 index();
+if (!isset($_SESSION))
+	session_start();
 include(HEADER_TEMPLATE);
 ?>
 
@@ -25,8 +27,7 @@ include(HEADER_TEMPLATE);
 		<?php echo $_SESSION['message']; ?>
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
-	<?php //clear_messages(); 
-	?>
+	<?php clear_messages(); ?>
 <?php endif; ?>
 
 <hr>
@@ -66,12 +67,24 @@ include(HEADER_TEMPLATE);
 								<a href="view.php?id=<?php echo $funcionario['id']; ?>" class="btn btn-sm btn-dark">
 									<i class="fa fa-eye"></i><span class="btn-text"> Visualizar</span>
 								</a>
-								<a href="edit.php?id=<?php echo $funcionario['id']; ?>" class="btn btn-sm btn-primary">
-									<i class="fa fa-pencil"></i><span class="btn-text"> Editar</span>
-								</a>
-								<a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#delete-modal" data-funcionario="<?php echo $funcionario['id']; ?>">
-									<i class="fa fa-trash"></i><span class="btn-text"> Excluir</span>
-								</a>
+								<?php if (isset($_SESSION['user'])) : ?>
+									<a href="edit.php?id=<?php echo $funcionario['id']; ?>" class="btn btn-sm btn-primary">
+										<i class="fa fa-pencil"></i><span class="btn-text"> Editar</span>
+									</a>
+								<?php else : ?>
+									<button href="edit.php?id=<?php echo $funcionario['id']; ?>" class="btn btn-sm btn-primary" disabled>
+										<i class="fa fa-pencil"></i><span class="btn-text"> Editar</span>
+									</button>
+								<?php endif; ?>
+								<?php if (isset($_SESSION['user'])) : ?>
+									<a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#delete-modal" data-funcionario="<?php echo $funcionario['id']; ?>">
+										<i class="fa fa-trash"></i><span class="btn-text"> Excluir</span>
+									</a>
+								<?php else : ?>
+									<button href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#delete-modal" data-funcionario="<?php echo $funcionario['id']; ?>" disabled>
+										<i class="fa fa-trash"></i><span class="btn-text"> Excluir</span>
+									</button>
+								<?php endif; ?>
 							</div>
 						</td>
 					</tr>

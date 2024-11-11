@@ -1,6 +1,8 @@
 <?php
 include('functions.php');
 add();
+if (!isset($_SESSION))
+session_start();
 include(HEADER_TEMPLATE);
 ?>
 
@@ -13,19 +15,19 @@ include(HEADER_TEMPLATE);
     <div class="row">
         <div class="form-group col-md-7">
             <label for="name">Nome / Razão Social</label>
-            <input type="text" class="form-control" name="usuario['nome']" maxlength="50" required>
+            <input type="text" class="form-control" name="usuario[nome]" maxlength="50" required>
         </div>
 
         <div class="form-group col-md-2">
             <label for="username">Usuário (Login)</label>
-            <input type="text" class="form-control" name="usuario['user']" required>
+            <input type="text" class="form-control" name="usuario[user]" required>
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-md-5">
             <label for="password">Senha</label>
-            <input type="password" class="form-control" name="usuario['password']" required>
+            <input type="password" class="form-control" name="usuario[password]" required>
         </div>
 
         <div class="form-group col-md-2">

@@ -2,7 +2,6 @@
 // Esse é o valida.php
 include("../config.php");
 require_once(DBAPI);
-include(HEADER_TEMPLATE);
 
 // Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
 if (!empty($_POST) and (empty($_POST['login']) OR empty($_POST['senha']))) {
@@ -33,13 +32,11 @@ try {
             // Pegamos os dados
             $dados = $query->fetch_assoc();
             echo "<b>";
-            var_dump($dados);
             echo "</b>";
             $id = $dados['id'];
             $nome = $dados['nome'];
             $user = $dados['user'];
             $password = $dados['password'];
-            var_dump($user);
 
             // Verifica se user não está vazio
             if (!empty($user)) {
@@ -49,7 +46,7 @@ try {
                 $_SESSION['id'] = $id;
                 $_SESSION['user'] = $user;
                 echo "<b>";
-                var_dump($user);
+
                 echo "<b/>";
             } else {
                 // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
@@ -69,6 +66,8 @@ try {
     $_SESSION['message'] = "Ocorreu um erro: " . $e->GetMessage();
     $_SESSION['type'] = "danger";
 }
+
+include(HEADER_TEMPLATE);
 ?>
 
 <?php if (!empty($_SESSION['message'])): ?>

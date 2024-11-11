@@ -1,9 +1,10 @@
-<?php 
-  require_once('functions.php'); 
-  edit();
+<?php
+require_once('functions.php');
+edit();
+if (!isset($_SESSION))
+  session_start();
+include(HEADER_TEMPLATE);
 ?>
-
-<?php include(HEADER_TEMPLATE); ?>
 
 <br>
 <h2>Atualizar Cliente</h2>

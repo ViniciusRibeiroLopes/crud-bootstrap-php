@@ -3,6 +3,9 @@
 include('functions.php');
 edit();
 
+if (!isset($_SESSION))
+session_start();
+
 include(HEADER_TEMPLATE);
 ?>
 
@@ -19,15 +22,15 @@ include(HEADER_TEMPLATE);
         </div>
 
         <div class="form-group col-md-4">
-            <label for="username">Usuário (Login)</label>
+            <label for="campo2">Usuário (Login)</label>
             <input type="text" class="form-control" name="usuario[user]" value="<?php echo $usuario['user']; ?>">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-md-4">
-            <label for="password">Senha</label>
-            <input type="password" class="form-control" name="usuario[password]" value="">
+            <label for="campo3">Senha</label>
+            <input type="password" class="form-control" name="usuario[password]" value="<?php echo $usuario['password']; ?>">
         </div>
     </div>
 
