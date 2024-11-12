@@ -62,16 +62,16 @@ if (!isset($_SESSION['user'])) {
 
     <div class="form-group col-md-7">
         <label for="name">Imagem</label>
-        <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)" value="<?php echo $usuario['foto']; ?>>
-
+        <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)">
         <?php
-        // Verifica se a imagem foi definida, caso contrário, usa uma imagem padrão
-        $imagem = !empty($usuario['foto']) ? $usuario['foto'] : 'SemImagem.png';
+        if (empty($usuario['foto'])) {
+            $imagem = 'SemImagem.png';
+        } else {
+            $imagem = $usuario['foto'];
+        }
         ?>
-
         <br>
-        <!-- Exibe a imagem atual ou a imagem padrão -->
-        <img id=" imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
+        <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
     </div>
 
     <br>

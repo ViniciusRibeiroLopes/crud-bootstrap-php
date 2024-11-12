@@ -2,32 +2,32 @@
 require_once('functions.php');
 edit();
 if (!isset($_SESSION))
-    session_start();
+  session_start();
 include(HEADER_TEMPLATE);
 
 // Verifica se o usuário não está logado ou não é admin
 if (!isset($_SESSION['user'])) {
-    // Mensagem de erro caso o usuário não esteja logado ou não seja admin
-    $_SESSION['message'] = "Você precisa estar logado para acessar esse recurso!";
-    $_SESSION['type'] = "danger";
+  // Mensagem de erro caso o usuário não esteja logado ou não seja admin
+  $_SESSION['message'] = "Você precisa estar logado para acessar esse recurso!";
+  $_SESSION['type'] = "danger";
 
-    echo "<br>";
+  echo "<br>";
 ?>
 
-    <!-- Exibe a mensagem de erro e a opção de voltar -->
-    <div class="alert alert-danger alert-dismissible" role="alert" id="actions">
-        <?php echo $_SESSION['message']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+  <!-- Exibe a mensagem de erro e a opção de voltar -->
+  <div class="alert alert-danger alert-dismissible" role="alert" id="actions">
+    <?php echo $_SESSION['message']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 
-    <div class="container text-center">
-        <a href="javascript:history.back()" class="btn btn-light"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
-    </div>
+  <div class="container text-center">
+    <a href="javascript:history.back()" class="btn btn-light"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
+  </div>
 
 <?php
-    clear_messages();
-    include(FOOTER_TEMPLATE);
-    exit; // Impede a execução de qualquer código abaixo
+  clear_messages();
+  include(FOOTER_TEMPLATE);
+  exit; // Impede a execução de qualquer código abaixo
 }
 ?>
 
@@ -57,15 +57,15 @@ if (!isset($_SESSION['user'])) {
       <label for="name">Imagem</label>
       <input type="file" class="form-control" name="foto" id="foto" onchange="previewImage(event)">
       <?php
-        if (empty($funcionario['foto'])) {
-            $imagem = 'SemImagem.png';
-        } else {
-            $imagem = $funcionario['foto'];
-        }
+      if (empty($funcionario['foto'])) {
+        $imagem = 'SemImagem.png';
+      } else {
+        $imagem = $funcionario['foto'];
+      }
       ?>
       <br>
       <img id="imagePreview" src="../fotos/<?php echo $imagem; ?>" alt="Foto do funcionário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
-  </div>
+    </div>
   </div>
   <br>
   <div id="actions" class="row">
@@ -77,20 +77,20 @@ if (!isset($_SESSION['user'])) {
 </form>
 
 <script>
-function previewImage(event) {
+  function previewImage(event) {
     const input = event.target;
     const preview = document.getElementById('imagePreview');
 
     if (input.files && input.files[0]) {
-        const reader = new FileReader();
+      const reader = new FileReader();
 
-        reader.onload = function(e) {
-            preview.src = e.target.result; // Atualiza a imagem para o preview
-        }
+      reader.onload = function(e) {
+        preview.src = e.target.result; // Atualiza a imagem para o preview
+      }
 
-        reader.readAsDataURL(input.files[0]); // Lê o arquivo como uma URL de dados
+      reader.readAsDataURL(input.files[0]); // Lê o arquivo como uma URL de dados
     }
-}
+  }
 </script>
 
 <?php include(FOOTER_TEMPLATE); ?>
