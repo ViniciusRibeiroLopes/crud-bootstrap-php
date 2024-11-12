@@ -22,14 +22,14 @@ include(HEADER_TEMPLATE);
 </header>
 
 <form name="filtro" action="index.php" method="post">
-    <div class="row">
-        <div class="form-group col-md-4">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" maxlength="50" name="customers" required>
-                <button type="submit" class="btn btn-secondary"><i class='fas fa-search'></i> Consultar</button>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="form-group col-md-4">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" maxlength="50" name="customers" required>
+				<button type="submit" class="btn btn-secondary"><i class='fas fa-search'></i> Consultar</button>
+			</div>
+		</div>
+	</div>
 </form>
 
 <?php if (!empty($_SESSION['message'])): ?>
@@ -68,12 +68,24 @@ include(HEADER_TEMPLATE);
 								<a href="view.php?id=<?php echo $customer['id']; ?>" class="btn btn-sm btn-dark square-button">
 									<i class="fa fa-eye"></i><span class="btn-text"> Visualizar</span>
 								</a>
-								<a href="edit.php?id=<?php echo $customer['id']; ?>" class="btn btn-sm btn-primary square-button">
-									<i class="fa fa-pencil"></i><span class="btn-text"> Editar</span>
-								</a>
-								<a href="#" class="btn btn-sm btn-danger square-button" data-bs-toggle="modal" data-bs-target="#delete-modal" data-customer="<?php echo $customer['id']; ?>">
-									<i class="fa fa-trash"></i><span class="btn-text"> Excluir</span>
-								</a>
+								<?php if (isset($_SESSION['user'])) : ?>
+									<a href="edit.php?id=<?php echo $customer['id']; ?>" class="btn btn-sm btn-primary">
+										<i class="fa fa-pencil"></i><span class="btn-text"> Editar</span>
+									</a>
+								<?php else : ?>
+									<button href="edit.php?id=<?php echo $customer['id']; ?>" class="btn btn-sm btn-primary" disabled>
+										<i class="fa fa-pencil"></i><span class="btn-text"> Editar</span>
+									</button>
+								<?php endif; ?>
+								<?php if (isset($_SESSION['user'])) : ?>
+									<a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#delete-modal" data-customer="<?php echo $customer['id']; ?>">
+										<i class="fa fa-trash"></i><span class="btn-text"> Excluir</span>
+									</a>
+								<?php else : ?>
+									<button href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#delete-modal" data-customer="<?php echo $customer['id']; ?>" disabled>
+										<i class="fa fa-trash"></i><span class="btn-text"> Excluir</span>
+									</button>
+								<?php endif; ?>
 							</div>
 						</td>
 					</tr>
