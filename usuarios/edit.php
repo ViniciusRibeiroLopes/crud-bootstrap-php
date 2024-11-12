@@ -33,6 +33,8 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
 
+<br>
+
 <header>
     <h2>Atualizar Usuário</h2>
 </header>

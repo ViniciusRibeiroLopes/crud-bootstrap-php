@@ -44,6 +44,8 @@ include(HEADER_TEMPLATE);
     </div>
     <?php clear_messages(); ?>
 <?php else : ?>
+
+    <br>
     <header>
         <h2>Cliente <?php echo $usuario['id']; ?></h2>
     </header>
