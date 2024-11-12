@@ -20,6 +20,16 @@ include(HEADER_TEMPLATE);
 	</div>
 </header>
 
+<form name="filtro" action="index.php" method="post">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" maxlength="50" name="funcionarios" required>
+                <button type="submit" class="btn btn-secondary"><i class='fas fa-search'></i> Consultar</button>
+            </div>
+        </div>
+    </div>
+</form>
 
 <?php if (!empty($_SESSION['message'])): ?>
 	<div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">

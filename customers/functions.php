@@ -12,7 +12,11 @@ $customer = null;
 function index()
 {
 	global $customers;
-	$customers = find_all("customers");
+  if (!empty($_POST['customers'])) {
+    $customers = filter("customers", "name like '%" . $_POST['customers'] . "%'"); //"nome like '%{$_POST['users']}%'"
+  } else {
+    $customers = find_all("customers");
+  }
 }
 
 /**

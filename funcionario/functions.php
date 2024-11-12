@@ -12,7 +12,11 @@ $funcionario = null;
 function index()
 {
   global $funcionarios;
-  $funcionarios = find_all("funcionarios");
+  if (!empty($_POST['funcionarios'])) {
+    $funcionarios = filter("funcionarios", "name like '%" . $_POST['funcionarios'] . "%'"); //"nome like '%{$_POST['users']}%'"
+  } else {
+    $funcionarios = find_all("funcionarios");
+  }
 }
 
 /**
