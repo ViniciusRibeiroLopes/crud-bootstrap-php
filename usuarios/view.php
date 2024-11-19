@@ -62,10 +62,10 @@ include(HEADER_TEMPLATE);
 
         <dt>Foto:</dt>
         <dd><?php
-            if (empty($funcionario['foto'])) {
+            if (empty($usuario['foto'])) {
                 $imagem = 'SemImagem.png';
             } else {
-                $imagem = $funcionario['foto'];
+                $imagem = $usuario['foto'];
             }
             ?>
             <img src="../fotos/<?php echo $imagem; ?>" alt="Foto do usuário" class="img-fluid img-thumbnail" style="width: 180px; height: auto;">
