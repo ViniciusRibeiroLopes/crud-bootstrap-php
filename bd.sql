@@ -80,6 +80,10 @@ CREATE TABLE usuarios(
     foto varchar(50)
 );
 
+-- Adiciona restrição única no campo 'user' para evitar duplicatas
+ALTER TABLE usuarios
+ADD CONSTRAINT unique_user UNIQUE (user);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
