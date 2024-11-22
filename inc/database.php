@@ -159,13 +159,12 @@ function update($table = null, $id = 0, $data = null)
 
   try {
     $database->query($sql);
-
     $_SESSION['message'] = 'Registro atualizado com sucesso.';
     $_SESSION['type'] = 'success';
   } catch (Exception $e) {
-
-    $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+    $_SESSION['message'] = 'Erro: ' . $e->getMessage();
     $_SESSION['type'] = 'danger';
+    error_log('Erro no UPDATE: ' . $e->getMessage());
   }
 
   close_database($database);
@@ -186,7 +185,7 @@ function remove($table = null, $id = null)
       $result = $database->query($sql);
 
       if ($result = $database->query($sql)) {
-        $_SESSION['message'] = "Registro Removido com Sucesso.";
+        $_SESSION['message'] = "Registro Removido com Sucesso!";
         $_SESSION['type'] = 'success';
       }
     }
@@ -200,9 +199,14 @@ function remove($table = null, $id = null)
 }
 function clear_messages()
 {
-  $_SESSION['message'] = null;
-  $_SESSION['type'] = null;
+    if (isset($_SESSION['message'])) {
+        unset($_SESSION['message']);
+    }
+    if (isset($_SESSION['type'])) {
+        unset($_SESSION['type']);
+    }
 }
+
 
 /**
  * Pesquisa registros pelo parâmetro $p que foi passado
@@ -237,15 +241,15 @@ function filter($table = null, $p = null)
 
 function criptografia($senha)
 {
-    //==> Criptografia Blowfish
-    //http://www.linhadecodigo.com.br/artigo/3332/criptografando-senhas-usando-bcrypt-blowfish-no-php.aspx
+  //==> Criptografia Blowfish
+  //http://www.linhadecodigo.com.br/artigo/3332/criptografando-senhas-usando-bcrypt-blowfish-no-php.aspx
 
-    // Aplicando criptografia na senha
-    $custo = "08";
-    $salt = "CflfllePArKlBJomMOF6aJ";
+  // Aplicando criptografia na senha
+  $custo = "08";
+  $salt = "CflfllePArKlBJomMOF6aJ";
 
-    // Gera um hash baseado em bcrypt
-    $hash = crypt($senha, "$2a$" . $custo . "$" . $salt . "$");
+  // Gera um hash baseado em bcrypt
+  $hash = crypt($senha, "$2a$" . $custo . "$" . $salt . "$");
 
-    return $hash; // retorna a senha criptografada
+  return $hash; // retorna a senha criptografada
 }

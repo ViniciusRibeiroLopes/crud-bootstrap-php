@@ -31,17 +31,17 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] != "admin") {
 ?>
 
 <header class="mt-2">
-	<br>
-	<div class="row">
-		<div class="col-12 col-md-6">
-			<h2>Usuários</h2>
-		</div>
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h2>Usuários</h2>
+        </div>
 
-		<div class="col-12 col-md-6 text-md-end text-start mt-2 mt-md-0 h2">
-			<a class="btn btn-primary square-button mb-2" href="add.php"><i class="fa fa-plus"></i> Novo Usuário</a>
-			<a class="btn btn-light square-button mb-2" href="../funcionario/"><i class="fa fa-refresh"></i> Atualizar</a>
-		</div>
-	</div>
+        <div class="col-12 col-md-6 text-md-end text-start mt-2 mt-md-0 h2">
+            <a class="btn btn-primary square-button mb-2" href="add.php"><i class="fa fa-plus"></i> Novo Usuário</a>
+            <a class="btn btn-light square-button mb-2" href="../funcionario/"><i class="fa fa-refresh"></i> Atualizar</a>
+        </div>
+    </div>
 </header>
 
 <form name="filtro" action="index.php" method="post">
