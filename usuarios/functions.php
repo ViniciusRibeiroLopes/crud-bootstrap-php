@@ -101,6 +101,15 @@ function add()
         try {
             $usuario = $_POST['usuario'];
 
+            // Validação de usuário duplicado
+            $validaUser = loginRepet($usuario['user']);
+            if (!$validaUser) {
+                $_SESSION['message'] = "Já existe uma pessoa com esse nome de Usuário!";
+                $_SESSION['type'] = "danger";
+                header('Location: index.php'); // Redireciona após definir a mensagem
+                exit; // Faz o script parar aqui, evitando execução posterior
+            }
+
             // Caminho absoluto para o diretório 'imagens'
             $uploadDir = dirname(__DIR__) . '/fotos/'; // Corrige o caminho adicionando a barra '/'
 
@@ -139,6 +148,18 @@ function add()
         }
     }
 }
+
+function loginRepet($login)
+{
+    $usuarios = find_all("usuarios");
+    foreach ($usuarios as $usuario) {
+        if ($login === $usuario['user']) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 /**
  *  Atualizacao/Edicao de Usuarios
