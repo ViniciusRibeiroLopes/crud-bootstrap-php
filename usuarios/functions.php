@@ -141,7 +141,6 @@ function add()
 
             save('usuarios', $usuario);
             header('Location: index.php');
-            exit(); // Adiciona exit() para garantir que o script pare após o redirecionamento
         } catch (Exception $e) {
             $_SESSION['message'] = "Aconteceu um erro: " . $e->getMessage();
             $_SESSION['type'] = "danger";
