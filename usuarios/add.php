@@ -6,7 +6,7 @@ session_start();
 include(HEADER_TEMPLATE);
 
 // Verifica se o usuário não está logado ou não é admin
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user']) || $_SESSION['user'] != "admin") {
     // Mensagem de erro caso o usuário não esteja logado ou não seja admin
     $_SESSION['message'] = "Você precisa estar logado para acessar esse recurso!";
     $_SESSION['type'] = "danger";
@@ -80,6 +80,26 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 </form>
+
+<?php
+// Check for existing username using prepared statements (recommended)
+if (isset($_POST['usuario']['user'])) {
+  $username = $_POST['usuario']['user'];
+  $sql = "SELECT * FROM usuarios WHERE username = ?"; // Prepare the query
+  $stmt = mysqli_prepare($conn, $sql); // Prepare statement
+  mysqli_stmt_bind_param($stmt, "s", $username); // Bind username parameter
+  mysqli_stmt_execute($stmt); // Execute the prepared statement
+  $result = mysqli_stmt_get_result($stmt); // Get results
+
+  if (mysqli_num_rows($result) > 0) {
+    echo "Usuário já existe!"; // Display error message
+  }
+
+  // Free resources
+  mysqli_stmt_close($stmt);
+  mysqli_free_result($result);
+}
+?>
 
 
 <script>
