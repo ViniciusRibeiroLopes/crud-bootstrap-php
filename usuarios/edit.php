@@ -10,7 +10,7 @@ include(HEADER_TEMPLATE);
 // Verifica se o usuário não está logado ou não é admin
 if (!isset($_SESSION['user']) || $_SESSION['user'] != "admin") {
     // Mensagem de erro caso o usuário não esteja logado ou não seja admin
-    $_SESSION['message'] = "Você precisa estar logado para acessar esse recurso!";
+    $_SESSION['message'] = "Você precisa estar logado  e ser administrador para acessar esse recurso!";
     $_SESSION['type'] = "danger";
 
     echo "<br>";
