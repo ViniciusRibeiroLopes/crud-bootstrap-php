@@ -159,7 +159,7 @@ function update($table = null, $id = 0, $data = null)
 
   try {
     $database->query($sql);
-    $_SESSION['message'] = 'Registro atualizado com sucesso.';
+    $_SESSION['message'] = 'Registro atualizado com sucesso!';
     $_SESSION['type'] = 'success';
   } catch (Exception $e) {
     $_SESSION['message'] = 'Erro: ' . $e->getMessage();
