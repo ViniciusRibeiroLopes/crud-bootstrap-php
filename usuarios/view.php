@@ -27,10 +27,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] != 'admin') {
 <?php
     clear_messages();
     include(FOOTER_TEMPLATE);
-    exit; // Impede a execução de qualquer código abaixo
+    exit;
 }
 
-// Se o usuário está logado e é admin, continua com a execução normal
 view($_GET['id']);
 include(HEADER_TEMPLATE);
 ?>
