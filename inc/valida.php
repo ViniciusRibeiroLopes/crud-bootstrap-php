@@ -12,8 +12,7 @@ if (!empty($_POST) and (empty($_POST['login']) OR empty($_POST['senha']))) {
 // Tenta se conectar a um banco de dados MySQL
 $bd = open_database();
 try {
-    // Selecionando o Banco de dados que está ajustado na constante DB_NAME
-    // Caso ele não consiga.
+
     $bd->select_db(DB_NAME);
     // Pegando o login e senha digitado no form
     $usuario = $_POST['login'];
