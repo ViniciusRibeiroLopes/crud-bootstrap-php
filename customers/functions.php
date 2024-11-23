@@ -3,6 +3,9 @@
 include("../config.php");
 include(DBAPI);
 
+// Inicia a sessão
+if (!isset($_SESSION)) session_start();
+
 $customers = null;
 $customer = null;
 
