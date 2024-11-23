@@ -2,12 +2,10 @@
 include('functions.php');
 add();
 if (!isset($_SESSION))
-session_start();
+    session_start();
 include(HEADER_TEMPLATE);
 
-// Verifica se o usuário não está logado ou não é admin
 if (!isset($_SESSION['user']) || $_SESSION['user'] != "admin") {
-    // Mensagem de erro caso o usuário não esteja logado ou não seja admin
     $_SESSION['message'] = "Você precisa estar logado  e ser administrador para acessar esse recurso!";
     $_SESSION['type'] = "danger";
 
@@ -27,7 +25,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] != "admin") {
 <?php
     clear_messages();
     include(FOOTER_TEMPLATE);
-    exit; // Impede a execução de qualquer código abaixo
+    exit;
 }
 ?>
 
@@ -81,27 +79,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] != "admin") {
     </div>
 </form>
 
-<?php
-// Check for existing username using prepared statements (recommended)
-if (isset($_POST['usuario']['user'])) {
-  $username = $_POST['usuario']['user'];
-  $sql = "SELECT * FROM usuarios WHERE username = ?"; // Prepare the query
-  $stmt = mysqli_prepare($conn, $sql); // Prepare statement
-  mysqli_stmt_bind_param($stmt, "s", $username); // Bind username parameter
-  mysqli_stmt_execute($stmt); // Execute the prepared statement
-  $result = mysqli_stmt_get_result($stmt); // Get results
-
-  if (mysqli_num_rows($result) > 0) {
-    echo "Usuário já existe!"; // Display error message
-  }
-
-  // Free resources
-  mysqli_stmt_close($stmt);
-  mysqli_free_result($result);
-}
-?>
-
-
 <script>
     function previewImage(event) {
         const input = event.target;
@@ -111,10 +88,10 @@ if (isset($_POST['usuario']['user'])) {
             const reader = new FileReader();
 
             reader.onload = function(e) {
-                preview.src = e.target.result; // Atualiza a imagem para o preview
+                preview.src = e.target.result;
             }
 
-            reader.readAsDataURL(input.files[0]); // Lê o arquivo como uma URL de dados
+            reader.readAsDataURL(input.files[0]);
         }
     }
 </script>
