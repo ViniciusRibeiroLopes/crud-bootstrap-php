@@ -175,6 +175,7 @@ function edit()
             // Busca o usuário pelo ID
             $usuarioV = find('usuarios', $id);
 
+
             // Verifica se o formulário foi submetido
             if (isset($_POST['usuario'])) {
                 $usuario = $_POST['usuario'];
@@ -208,6 +209,14 @@ function edit()
                 } else {
                     // Mantém a imagem existente se nenhuma nova for enviada
                     $usuario['foto'] = $usuarioV['foto'];
+                }
+                // Validação de usuário duplicado
+                $validaUser = loginRepet($usuario['user']);
+                if (!$validaUser) {
+                    $_SESSION['message'] = "Já existe uma pessoa com esse nome de Usuário!";
+                    $_SESSION['type'] = "danger";
+                    header('Location: index.php'); // Redireciona após definir a mensagem
+                    exit; // Faz o script parar aqui, evitando execução posterior
                 }
 
                 // Atualiza o usuário no banco de dados
