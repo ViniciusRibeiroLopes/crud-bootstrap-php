@@ -80,6 +80,9 @@ CREATE TABLE usuarios(
     foto varchar(50)
 );
 
+INSERT INTO usuarios (id, nome, user, password, foto)
+VALUES (1, 'Administrador', 'admin', '$2a$08$CflfllePArKlBJomMOF6a.yI2pOwBdjTn/ObCAHraWJMqsiMhMKxS', NULL);
+
 -- Adiciona restrição única no campo 'user' para evitar duplicatas
 ALTER TABLE usuarios
 ADD CONSTRAINT unique_user UNIQUE (user);
