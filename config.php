@@ -17,7 +17,7 @@
         
     /** caminho no server para o sistema **/
     if ( !defined("BASEURL") )
-        define('BASEURL', '/pw2/crud-bootstrap-php/');
+        define('BASEURL', '/FuncionariosPHP/crud-bootstrap-php/');
 
         
     /** caminho do arquivo de banco de dados **/
